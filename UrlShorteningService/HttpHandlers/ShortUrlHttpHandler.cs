@@ -1,10 +1,12 @@
 ﻿using Microsoft.Practices.ServiceLocation;
 using System.Web;
 using UrlShorteningService.Processors;
+using System;
+using System.Threading.Tasks;
 
 namespace UrlShorteningService.HttpHandlers
 {
-    public class ShortUrlHttpHandler : IHttpHandler
+    public class ShortUrlHttpHandler : HttpTaskAsyncHandler
     {
         IUrlProcessor _processor;
         public ShortUrlHttpHandler() : this(ServiceLocator.Current.GetInstance<IUrlProcessor>())
@@ -16,22 +18,22 @@ namespace UrlShorteningService.HttpHandlers
             this._processor = processor;
         }
 
-        public bool IsReusable => false;
+        public override bool IsReusable => false;
 
-        public void ProcessRequest(HttpContext context)
+        public override async Task ProcessRequestAsync(HttpContext context)
         {
             HttpRequest Request = context.Request;
             HttpResponse Response = context.Response;
-            var deflatedurl = GetInflatedUrl(context, Request.Path.Substring(1));
+            var deflatedurl = await GetInflatedUrlAsync(context, Request.Path.Substring(1)).ConfigureAwait(false);
             Response.Redirect(deflatedurl);
         }
 
-        private string GetInflatedUrl(HttpContext context, string shorturl)
+        private async Task<string> GetInflatedUrlAsync(HttpContext context, string shorturl)
         {
             var longUrl = context.Cache[shorturl];
             if (longUrl == null)
             {
-                longUrl = _processor.Inflate(shorturl);
+                longUrl = await _processor.InflateAsync(shorturl).ConfigureAwait(false);
                 context.Cache[shorturl] = longUrl;
             }
             return longUrl.ToString();

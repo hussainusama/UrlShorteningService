@@ -1,31 +1,68 @@
 ﻿using System;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Threading.Tasks;
 
 namespace UrlShorteningService.Models
 {
     public class UrlMapRepository : IUrlMapRepository
     {
-        public void Insert(UrlMap entity)
+        public async Task<int> InsertAsync(string longUrl)
         {
-            //SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["azuredb"]);
-            //conn.Open();
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["azuresqldb"].ConnectionString))
+            {
+                using (var commInsert = conn.CreateCommand())
+                {
+                    commInsert.CommandType = System.Data.CommandType.StoredProcedure;
 
-            //SqlCommand comm = new SqlCommand("Insert");
-            //comm.Parameters.Add("@Url", System.Data.SqlDbType.VarChar, 2000);
-            //comm.CommandType = System.Data.CommandType.StoredProcedure;
+                    var paramUrl = new SqlParameter()
+                    {
+                        Direction = System.Data.ParameterDirection.Input,
+                        SqlDbType = System.Data.SqlDbType.VarChar,
+                        ParameterName = "@Url",
+                        Value = longUrl
+                    };
 
-            //comm.ExecuteNonQuery();
+                    var paramId = new SqlParameter()
+                    {
+                        Direction = System.Data.ParameterDirection.Output,
+                        SqlDbType = System.Data.SqlDbType.Int,
+                        ParameterName = "@Id"
+                    };
+
+                    commInsert.Parameters.AddRange(new SqlParameter[] { paramUrl, paramId });
+
+                    await conn.OpenAsync().ConfigureAwait(false);
+
+                    await commInsert.ExecuteNonQueryAsync().ConfigureAwait(false);
+
+                    return Convert.ToInt32(commInsert.Parameters["@Id"].Value);
+                }
+            }
         }
 
-        public void Delete(UrlMap entity)
+        async Task<string> IUrlMapRepository.GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
-        }
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["azuresqldb"].ConnectionString))
+            {
+                using (var commSelect = conn.CreateCommand())
+                {
+                    commSelect.CommandType = System.Data.CommandType.StoredProcedure;
 
-        UrlMap IUrlMapRepository.GetById(int id)
-        {
-            throw new NotImplementedException();
+                    SqlParameter paramId = new SqlParameter();
+                    paramId.Direction = System.Data.ParameterDirection.Input;
+                    paramId.SqlDbType = System.Data.SqlDbType.Int;
+                    paramId.ParameterName = "@Id";
+
+                    commSelect.Parameters.Add(paramId);
+
+                    await conn.OpenAsync().ConfigureAwait(false);
+
+                    var longUrl = await commSelect.ExecuteScalarAsync().ConfigureAwait(false);
+                    
+                    return longUrl.ToString();
+                }
+            }
         }
     }
 }

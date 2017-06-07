@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Threading.Tasks;
 
 namespace UrlShorteningService.Processors
 {
     public interface IUrlProcessor
     {
-        string Deflate(string longUrl);
+        Task<string> DeflateAsync(string longUrl);
 
-        string Inflate(string shortUrl);
+        Task<string> InflateAsync(string shortUrl);
 
     }
 }

@@ -10,7 +10,7 @@ namespace UrlShorteningService.Tests
 {
     class FakeUrlMapRepository : IUrlMapRepository
     {
-        Dictionary<int, UrlMap> mappings = new Dictionary<int, UrlMap>();
+        Dictionary<int, string> mappings = new Dictionary<int, string>();
         int i = 0;
 
         public FakeUrlMapRepository(int identitySeed)
@@ -18,31 +18,15 @@ namespace UrlShorteningService.Tests
             i = identitySeed;
         }
 
-        public void Delete(UrlMap entity)
+        public Task<string> GetByIdAsync(int id)
         {
-            mappings.Remove(entity.Id);
+            return Task.FromResult(mappings[id]);
         }
 
-        public UrlMap GetById(int id)
+        public Task<int> InsertAsync(string longUrl)
         {
-            return mappings[id];
-        }
-
-        public void Insert(UrlMap entity)
-        {
-            if (mappings.Values.ToList().Contains(entity))
-            {
-                foreach (var map in mappings)
-                {
-                    if (map.Value == entity) entity = map.Value;
-                    break;
-                }
-            }
-            else
-            {
-                entity.Id = ++i;
-                mappings.Add(entity.Id, entity);
-            }
+            mappings.Add(++i, longUrl);
+            return Task.FromResult(i);
         }
     }
 }

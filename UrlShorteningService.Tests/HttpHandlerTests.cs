@@ -12,10 +12,10 @@ namespace UrlShorteningService.Tests
     public class HttpHandlerTests
     {
         [TestMethod]
-        public void TestMethod2()
+        public void Invoke_ProcessRequest_ShouldRedirect()
         {
             FakeUrlMapRepository repo = new FakeUrlMapRepository(1234566);
-            repo.Insert(new Models.UrlMap() { LongUrl = "http://www.google.com" });
+            repo.InsertAsync("http://www.google.com");
 
             StringBuilder output = new StringBuilder();
             using (StringWriter sw = new StringWriter(output))
@@ -25,7 +25,8 @@ namespace UrlShorteningService.Tests
                 request.Browser = new HttpBrowserCapabilities();
                 request.Browser.Capabilities = new Dictionary<string, string> { { "requiresPostRedirectionHandling", "false" } };
                 HttpContext context = new HttpContext(request, response);
-                new ShortUrlHttpHandler(new Base62UrlProcessor(repo, new FakeBase62Encoder())).ProcessRequest(context);
+                var handler = new ShortUrlHttpHandler(new Base62UrlProcessor(repo, new FakeBase62Encoder()));
+                handler.ProcessRequestAsync(context).ConfigureAwait(false);
             }
             var html = output.ToString();
             var redirect = "Object moved to <a href=\"http://www.google.com\">here</a>";

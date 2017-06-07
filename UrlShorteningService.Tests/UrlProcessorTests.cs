@@ -7,24 +7,37 @@ namespace UrlShorteningService.Tests
     public class UrlProcessorTests
     {
         [TestMethod]
-        public void TestMethod1()
+        public async System.Threading.Tasks.Task ProcessUrl_DeflateThenInflate_InflatedEqualsUrl()
         {
             var urlLong = "https://docs.microsoft.com/en-us/aspnet/mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application";
 
-            Base62UrlProcessor processor = new Base62UrlProcessor(new FakeUrlMapRepository(0), new Base62Encoder());
-            var urlShort = processor.Deflate(urlLong);
+            Base62UrlProcessor processor = new Base62UrlProcessor(new FakeUrlMapRepository(1233), new Base62Encoder());
+            var urlDeflated = await processor.DeflateAsync(urlLong).ConfigureAwait(false);
+            var urlInflated = await processor.InflateAsync(urlDeflated).ConfigureAwait(false);
 
-            Assert.AreEqual(urlLong, processor.Inflate(urlShort));
+            Assert.AreEqual(urlLong, urlInflated);
         }
 
-        public void TestMethod2()
+        [TestMethod]
+        public async System.Threading.Tasks.Task ProcessUrl_Deflate_ReturnsShortStringofMinLength()
         {
             var urlLong = "https://docs.microsoft.com/en-us/aspnet/mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application";
 
             Base62UrlProcessor processor = new Base62UrlProcessor(new FakeUrlMapRepository(0), new Base62Encoder());
-            var urlShort = processor.Deflate(urlLong);
+            var urlDeflated = await processor.DeflateAsync(urlLong).ConfigureAwait(false);
 
-            Assert.AreEqual(urlShort, processor.Deflate(urlLong));
+            Assert.IsTrue(urlDeflated.Length == 1);
+        }
+
+        [TestMethod]
+        public async System.Threading.Tasks.Task ProcessUrl_Deflate_ReturnsShortStringofMaxLength()
+        {
+            var urlLong = "https://docs.microsoft.com/en-us/aspnet/mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application";
+
+            Base62UrlProcessor processor = new Base62UrlProcessor(new FakeUrlMapRepository(2147483646), new Base62Encoder());
+            var urlDeflated = await processor.DeflateAsync(urlLong).ConfigureAwait(false);
+
+            Assert.IsTrue(urlDeflated.Length == 6);
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using UrlShorteningService.Models;
+using System.Threading.Tasks;
 
 namespace UrlShorteningService.Processors
 {
@@ -18,18 +19,16 @@ namespace UrlShorteningService.Processors
             this.encoder = encoder;
         }
 
-        public string Deflate(string longUrl)
+        public async Task<string> DeflateAsync(string longUrl)
         {
-            var urlMap = new UrlMap { LongUrl = longUrl };
-            repository.Insert(urlMap);
-            return encoder.Encode(urlMap.Id);
+            var id = await repository.InsertAsync(longUrl);
+            return encoder.Encode(id);
         }
 
-        public string Inflate(string shortUrl)
+        public async Task<string> InflateAsync(string shortUrl)
         {
             var id = encoder.Decode(shortUrl);
-            var urlMap = repository.GetById(id);
-            return urlMap.LongUrl;
+            return await repository.GetByIdAsync(id);
         }
     }
 }

@@ -1,8 +1,9 @@
 ﻿CREATE PROCEDURE [dbo].[Select]
 	@Id int
 AS
+BEGIN
 	SET NOCOUNT ON;
 
-	SELECT Id, [Url] FROM UrlMapping WHERE Id = @Id
+	SELECT [Url] FROM UrlMapping WHERE Id = @Id
 
-RETURN 0
+END
