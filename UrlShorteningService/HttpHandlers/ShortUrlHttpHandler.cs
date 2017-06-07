@@ -3,6 +3,7 @@ using System.Web;
 using UrlShorteningService.Processors;
 using System;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace UrlShorteningService.HttpHandlers
 {
@@ -24,8 +25,15 @@ namespace UrlShorteningService.HttpHandlers
         {
             HttpRequest Request = context.Request;
             HttpResponse Response = context.Response;
-            var deflatedurl = await GetInflatedUrlAsync(context, Request.Path.Substring(1)).ConfigureAwait(false);
-            Response.Redirect(deflatedurl);
+
+            var path = Request.Path.Substring(1);
+
+            Regex regex = new Regex("^[a-zA-Z0-9]{1,6}$");
+            if(regex.IsMatch(path))
+            {
+                var deflatedurl = await GetInflatedUrlAsync(context, path).ConfigureAwait(false);
+                Response.Redirect(deflatedurl);
+            }
         }
 
         private async Task<string> GetInflatedUrlAsync(HttpContext context, string shorturl)

@@ -13,6 +13,7 @@ namespace UrlShorteningService.Models
             {
                 using (var commInsert = conn.CreateCommand())
                 {
+                    commInsert.CommandText = "Insert";
                     commInsert.CommandType = System.Data.CommandType.StoredProcedure;
 
                     var paramUrl = new SqlParameter()
@@ -47,6 +48,7 @@ namespace UrlShorteningService.Models
             {
                 using (var commSelect = conn.CreateCommand())
                 {
+                    commSelect.CommandText = "Select";
                     commSelect.CommandType = System.Data.CommandType.StoredProcedure;
 
                     SqlParameter paramId = new SqlParameter();

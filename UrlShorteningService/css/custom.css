@@ -1,0 +1,11 @@
+﻿body {
+    display: table;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.jumbotron {
+    display: table-cell;
+    vertical-align: top;
+}
