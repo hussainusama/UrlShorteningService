@@ -1,11 +1,10 @@
 ﻿using Microsoft.Practices.ServiceLocation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Web.Http;
 using UrlShorteningService.Processors;
+using System.Threading.Tasks;
 
 namespace UrlShorteningService.Controllers
 {
@@ -24,12 +23,19 @@ namespace UrlShorteningService.Controllers
             this._processor = processor;
         }
 
-        [Route("shorten")]
-        [HttpPost]
-        public async System.Threading.Tasks.Task<string> ShortenAsync([FromBody] string longUrl)
+        [HttpGet]
+        [ActionName("shorten")]
+        public async Task<HttpResponseMessage> ShortenAsync(string longUrl)
         {
             var shortUrl = await _processor.DeflateAsync(longUrl);
-            return string.Concat(Url.Content("~/") + shortUrl);
+            var result = string.Concat(Url.Content("~/") + shortUrl);
+
+            var resp = new HttpResponseMessage(HttpStatusCode.OK)
+            {
+                Content = new StringContent(result, Encoding.UTF8, "text/plain")
+            };
+            return resp;
+
         }
     }
 }
