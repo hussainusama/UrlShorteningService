@@ -23,11 +23,11 @@
 
 
         <div class="jumbotron vertical-center">
-            <div class="container text-center">
+            <div class="container">
                 <h2>Simplify your url</h2>
                 <div class="row">
                     <form id="form2">
-                        <div class="col-md-10">
+                        <div class="col-md-9">
                             <input id="txtLongurl" type="text" style="width:100%" />
 
                         </div>
@@ -38,8 +38,12 @@
                     </form>
         </div>
                 <div class="row">
-                    <div class="col-md-11">
-                        <span id="txtShorturl"></span>
+                    <div class="col-md-3">
+                        <a id="txtShorturl"></a>
+
+                    </div>
+                    <div class="col-md-6">
+                        <a id="lnkCopy" onclick="clipBoard()" style="cursor:pointer">Copy</a>
 
                     </div>
 
@@ -54,50 +58,53 @@
 
     <script type="text/javascript">
 
-        //$('#form2').submit(function () {
-        //    var jqxhr = $.post('api/url/shorten', { "": $('#txtLongurl').val() })
-        //        .success(function () {
-        //            //var loc = jqxhr.getResponseHeader('Location');
-        //            //var a = $('<a/>', { href: loc, text: loc });
-        //            //$('#message').html(a);
-        //            $('#txtShorturl').text(shortUrl);
-        //        })
-        //        .error(function () {
-        //            alert('Sonething went wrong. Please try later.');
-        //        });
-        //    return false;
-        //});
+        $(document).ready(function () {
+            $('#lnkCopy').hide();
+        });
 
         $('#btnSubmit').click(function (e) {
             var url = $('#txtLongurl').val();
-            alert(url);
             shorten(url);
         });
+
+
 
         function shorten(longUrl) {
 
             $.ajax({
-                type: "POST",
-                url: "/api/url/shorten",
-                data: JSON.stringify(longUrl),
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                crossDomain: true,
+                headers: {
+                    'Accept': 'text/plain',
+                    'Content-Type': 'text/plain'
+                },
+                type: "GET",
+                url: "/api/url/shorten?longUrl=" + longUrl,
+                contentType: "text/plain",
+                dataType: "text",
                 success: onSuccess,
                 failure: onFailure
             });
-              
+           
         }
 
         function onSuccess(shortUrl) {
             $('#txtShorturl').text(shortUrl);
+            $("#txtShorturl").attr("href", shortUrl);
+            $('#lnkCopy').show();
+
         }
 
         function onFailure(response) {
             alert('Sonething went wrong. Please try later.');
         }
 
+
+        function ClipBoard() {
+            var target = document.getElementById('txtShortUrl');
+            Copied = target.createTextRange();
+            Copied.execCommand("Copy");
+        }
        
     </script>
+
 </body>
 </html>

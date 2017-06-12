@@ -51,11 +51,13 @@ namespace UrlShorteningService.Models
                     commSelect.CommandText = "Select";
                     commSelect.CommandType = System.Data.CommandType.StoredProcedure;
 
-                    SqlParameter paramId = new SqlParameter();
-                    paramId.Direction = System.Data.ParameterDirection.Input;
-                    paramId.SqlDbType = System.Data.SqlDbType.Int;
-                    paramId.ParameterName = "@Id";
-
+                    SqlParameter paramId = new SqlParameter()
+                    {
+                        Direction = System.Data.ParameterDirection.Input,
+                        SqlDbType = System.Data.SqlDbType.Int,
+                        ParameterName = "@Id",
+                        Value = id
+                    };
                     commSelect.Parameters.Add(paramId);
 
                     await conn.OpenAsync().ConfigureAwait(false);
