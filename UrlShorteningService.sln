@@ -1,15 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26430.12
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UrlShorteningService", "UrlShorteningService\UrlShorteningService.csproj", "{8D58574D-F6E3-4522-A6DC-7B6C93A9E724}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UrlShorteningService.Tests", "UrlShorteningService.Tests\UrlShorteningService.Tests.csproj", "{14B4C774-6634-4AE7-83C0-CF1BB8DBBC62}"
 EndProject
-Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "UrlShorteningServiceResourceGroup", "UrlShorteningServiceResourceGroup\UrlShorteningServiceResourceGroup.deployproj", "{CB52B787-D276-4DAC-858B-CA8817F2A9A7}"
+Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "UrlShorteningService.Deployment", "UrlShorteningService.Deployment\UrlShorteningService.Deployment.deployproj", "{70C14DA7-9CD3-461C-879F-2E176A235BC4}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "UrlShorteningServiceDb", "UrlShorteningServiceDb\UrlShorteningServiceDb.sqlproj", "{E3285084-B2C8-4C8A-A176-AA0BD5B111BE}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "UrlShorteningService.Database", "UrlShorteningService.Database\UrlShorteningService.Database.sqlproj", "{E3285084-B2C8-4C8A-A176-AA0BD5B111BE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,10 +25,10 @@ Global
 		{14B4C774-6634-4AE7-83C0-CF1BB8DBBC62}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{14B4C774-6634-4AE7-83C0-CF1BB8DBBC62}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{14B4C774-6634-4AE7-83C0-CF1BB8DBBC62}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CB52B787-D276-4DAC-858B-CA8817F2A9A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CB52B787-D276-4DAC-858B-CA8817F2A9A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CB52B787-D276-4DAC-858B-CA8817F2A9A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CB52B787-D276-4DAC-858B-CA8817F2A9A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70C14DA7-9CD3-461C-879F-2E176A235BC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70C14DA7-9CD3-461C-879F-2E176A235BC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70C14DA7-9CD3-461C-879F-2E176A235BC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70C14DA7-9CD3-461C-879F-2E176A235BC4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E3285084-B2C8-4C8A-A176-AA0BD5B111BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E3285084-B2C8-4C8A-A176-AA0BD5B111BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E3285084-B2C8-4C8A-A176-AA0BD5B111BE}.Debug|Any CPU.Deploy.0 = Debug|Any CPU

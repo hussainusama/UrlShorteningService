@@ -1,0 +1,69 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+  "parameters": {
+    "appService_UrlShorteningService_name": {
+      "value": "UrlShorteningService"
+    },
+    "appServicePlan_UrlShorteningServicePlan_name": {
+      "value": "UrlShorteningServicePlan"
+    },
+    "appServicePlan_UrlShorteningServicePlan_skuName": {
+      "value": "F1"
+    },
+    "appServicePlan_UrlShorteningServicePlan_skuTier": {
+      "value": "Free"
+    },
+    "appServicePlan_UrlShorteningServicePlan_skuFamily": {
+      "value": "F1"
+    },
+    "appServicePlan_UrlShorteningServicePlan_skuSize": {
+      "value": "F"
+    },
+    "appServicePlan_UrlShorteningServicePlan_workerSizeId": {
+      "value": 0
+    },
+    "collation": {
+      "value": "SQL_Latin1_General_CP1_CI_AS"
+    },
+    "databaseName": {
+      "value": "UrlShorteningServiceDatabase"
+    },
+    "edition": {
+      "value": "Basic"
+    },
+    "requestedServiceObjectiveId": {
+      "value": "dd6d99bb-f193-4ec1-86f2-43d3bccbc49c"
+    },
+    "maxSizeBytes": {
+      "value": "2147483648"
+    },
+    "serverName": {
+      "value": "hussainusama"
+    },
+    "diagnosticStorageAccountId": {
+      "value": ""
+    },
+    "diagnosticsTemplate": {
+      "value": ""
+    },
+    "sampleName": {
+      "value": ""
+    },
+    "administratorLogin": {
+      "value": "ush"
+    },
+    "administratorLoginPassword": {
+      "value": "P@ssw0rd"
+    },
+    "version": {
+      "value": "12.0"
+    },
+    "UrlShorteningServiceDeployPackageFolder": {
+      "value": "UrlShorteningService"
+    },
+    "UrlShorteningServiceDeployPackageFileName": {
+      "value": "package.zip"
+    }
+  }
+}

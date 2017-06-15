@@ -28,7 +28,7 @@ namespace UrlShorteningService.Controllers
         public async Task<HttpResponseMessage> ShortenAsync(string longUrl)
         {
             var shortUrl = await _processor.DeflateAsync(longUrl);
-            var result = string.Concat(Url.Content("~/") + shortUrl);
+            var result = string.Concat(Url.Content("~/"), shortUrl);
 
             var resp = new HttpResponseMessage(HttpStatusCode.OK)
             {

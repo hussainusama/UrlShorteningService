@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <Name>UrlShorteningServiceDb</Name>
+    <Name>UrlShorteningService.Database</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
     <ProjectGuid>{e3285084-b2c8-4c8a-a176-aa0bd5b111be}</ProjectGuid>
@@ -12,8 +12,8 @@
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
-    <RootNamespace>UrlShorteningServiceDb</RootNamespace>
-    <AssemblyName>UrlShorteningServiceDb</AssemblyName>
+    <RootNamespace>UrlShorteningService.Database</RootNamespace>
+    <AssemblyName>UrlShorteningService.Database</AssemblyName>
     <ModelCollation>1033, CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
@@ -23,7 +23,7 @@
     <SqlServerVerification>False</SqlServerVerification>
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseSet>True</TargetDatabaseSet>
-    <GenerateCreateScript>True</GenerateCreateScript>
+    <GenerateCreateScript>False</GenerateCreateScript>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -63,5 +63,8 @@
     <Build Include="UrlMapping.sql" />
     <Build Include="Insert.sql" />
     <Build Include="Select.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="UrlShorteningService.Database.publish.xml" />
   </ItemGroup>
 </Project>

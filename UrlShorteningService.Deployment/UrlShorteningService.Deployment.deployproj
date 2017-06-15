@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>cb52b787-d276-4dac-858b-ca8817f2a9a7</ProjectGuid>
+    <ProjectGuid>70c14da7-9cd3-461c-879f-2e176a235bc4</ProjectGuid>
   </PropertyGroup>
   <PropertyGroup>
     <TargetFrameworkIdentifier>Deployment</TargetFrameworkIdentifier>
@@ -25,12 +25,19 @@
   <Import Condition=" Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Deployment\1.1\DeploymentProject.targets') " Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Deployment\1.1\DeploymentProject.targets" />
   <!-- vertag<:>end -->
   <ItemGroup>
+    <Content Include="azuredeploy.json" />
+    <Content Include="azuredeploy.parameters.json" />
     <None Include="Deployment.targets">
       <Visible>False</Visible>
     </None>
     <Content Include="Deploy-AzureResourceGroup.ps1" />
-    <Content Include="WebSiteSQLDatabase.json" />
-    <Content Include="WebSiteSQLDatabase.parameters.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UrlShorteningService\UrlShorteningService.csproj">
+      <Targets>Build;Package</Targets>
+      <AdditionalProperties>PackageLocation=..\UrlShorteningService.Deployment\$(ProjectReferencesOutputPath)\UrlShorteningService\package.zip</AdditionalProperties>
+      <IncludeFilePath>$(ProjectReferencesOutputPath)\UrlShorteningService\package.zip</IncludeFilePath>
+    </ProjectReference>
   </ItemGroup>
   <Target Name="GetReferenceAssemblyPaths" />
 </Project>
