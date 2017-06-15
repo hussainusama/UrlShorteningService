@@ -75,14 +75,13 @@
               "description": "WebDeploy package location. This path is relative to the _artifactsLocation parameter"
           }
       },
-      "UrlShorteningServiceDeployPackageFileName": {
-          "type": "string",
-          "minLength": 1,
-          "metadata": {
-              "description": "Name of the webdeploy package"
-          }
+    "UrlShorteningServiceDeployPackageFileName": {
+      "type": "string",
+      "minLength": 1,
+      "metadata": {
+        "description": "Name of the webdeploy package"
       }
-
+    }
   },
   "resources": [
     {
@@ -159,10 +158,10 @@
           "resources": [
             {
               "name": "MSDeploy",
-              "type": "Microsoft.Web/sites/extensions",
+              "type": "extensions",
               "location": "[resourceGroup().location]",
               "apiVersion": "2015-08-01",
-              "dependsOn": [ "concat('Microsoft.Web/sites/', parameters('appService_UrlShorteningService_name'))" ],
+
               "tags": {
                 "displayName": "UrlShorteningServiceDeploy"
               },
@@ -173,7 +172,10 @@
                 "setParameters": {
                   "IIS Web Application Name": "parameters('appService_UrlShorteningService_name')"
                 }
-              }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.Web/sites/', parameters('appService_UrlShorteningService_name'))]" 
+              ]
             },
             {
               "type": "config",
@@ -195,8 +197,5 @@
         }
       ]
     }
-  ],
-    "variables": {
-        "storageName": "[concat('storage', uniqueString(resourceGroup().id))]"
-    }
+  ]
 }

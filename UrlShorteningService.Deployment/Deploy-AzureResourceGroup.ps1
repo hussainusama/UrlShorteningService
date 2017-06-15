@@ -14,8 +14,8 @@ Param(
     [string] $DSCSourceFolder = 'DSC',
     [switch] $ValidateOnly,
     [string] $DBPublishProfilePath = '.\UrlShorteningService.Database\UrlShorteningService.Database.publish.xml',
-	[string] $DBdacpacPath = '.\UrlShorteningService.Database\bin\Debug\UrlShorteningService.Database.dacpac'
-
+	[string] $DBdacpacPath = '.\UrlShorteningService.Database\bin\Debug\UrlShorteningService.Database.dacpac',
+	[string] $SqlPackageExePath = 'C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\Extensions\Microsoft\SQLDB\DAC\130\sqlpackage.exe'
 	)
 
 	
@@ -123,12 +123,19 @@ else {
     if ($ErrorMessages) {
         Write-Output '', 'Template deployment returned the following errors:', @(@($ErrorMessages) | ForEach-Object { $_.Exception.Message.TrimEnd("`r`n") })
     }
+	else {
+		# Deploy database
+
+		$dbserver = "hussainusama.database.windows.net"  
+		$database = "UrlShorteningServiceDatabase"
+
+		if(Test-Path $SqlPackageExePath) {
+			& $SqlPackageExePath /Action:Publish /tsn:$dbServer /tdn:$database /sf:$DBdacpacPath /pr:$DBPublishProfilePath
+		}
+		else {
+			Write-Output '', 'Database deployment requires a valid sqlpackage.exe path.'
+		}
+	}
 }
 
-# Deploy database
-$sqlpackage = "C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\Extensions\Microsoft\SQLDB\DAC\120\sqlpackage.exe"
 
-$dbserver = "hussainusama.database.windows.net"  
-$database = "UrlShorteningServiceDatabase"
-
-& $sqlpackage /Action:Publish /tsn:$dbServer /tdn:$database /sf:$DBdacpacPath /pr:$DBPublishProfilePath
