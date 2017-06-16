@@ -35,8 +35,8 @@
   <ItemGroup>
     <ProjectReference Include="..\UrlShorteningService.Database\UrlShorteningService.Database.sqlproj">
       <Targets>Build</Targets>
-      <AdditionalProperties>PackageLocation=..\UrlShorteningService.Database\bin\Debug\*.*</AdditionalProperties>
-      <IncludeFilePath>..\UrlShorteningService.Database\bin\Debug\*.*</IncludeFilePath>
+      <AdditionalProperties>PackageLocation=..\UrlShorteningService.Database\bin\$(Configuration)\*.*</AdditionalProperties>
+      <IncludeFilePath>..\UrlShorteningService.Database\bin\$(Configuration)\*.*</IncludeFilePath>
       <Private>false</Private>
     </ProjectReference>
     <ProjectReference Include="..\UrlShorteningService\UrlShorteningService.csproj">

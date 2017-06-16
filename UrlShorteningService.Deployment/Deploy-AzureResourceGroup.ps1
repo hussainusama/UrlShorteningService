@@ -13,6 +13,8 @@ Param(
     [string] $ArtifactStagingDirectory = '.',
     [string] $DSCSourceFolder = 'DSC',
     [switch] $ValidateOnly,
+	[string] $DbServer = "hussainusama.database.windows.net",  
+	[string] $Database = "UrlShorteningServiceDatabase",
 	[string] $SqlPackageExePath = 'C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\Extensions\Microsoft\SQLDB\DAC\130\sqlpackage.exe'
 	)
 
@@ -127,13 +129,9 @@ else {
 	else {
 	
 		# Deploy database
-
-		$dbserver = "hussainusama.database.windows.net"  
-		$database = "UrlShorteningServiceDatabase"
-
 	
 		if(Test-Path $SqlPackageExePath) {
-			& $SqlPackageExePath /Action:Publish /tsn:$dbServer /tdn:$database /sf:$DBdacpacPath /pr:$DBPublishProfilePath
+			& $SqlPackageExePath /Action:Publish /tsn:$DbServer /tdn:$Database /sf:$DBdacpacPath /pr:$DBPublishProfilePath
 		}
 		else {
 			Write-Output '', 'Database deployment requires a valid sqlpackage.exe path.'
