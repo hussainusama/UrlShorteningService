@@ -33,6 +33,12 @@
     <Content Include="Deploy-AzureResourceGroup.ps1" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\UrlShorteningService.Database\UrlShorteningService.Database.sqlproj">
+      <Targets>Build</Targets>
+      <AdditionalProperties>PackageLocation=..\UrlShorteningService.Database\bin\Debug\*.*</AdditionalProperties>
+      <IncludeFilePath>..\UrlShorteningService.Database\bin\Debug\*.*</IncludeFilePath>
+      <Private>false</Private>
+    </ProjectReference>
     <ProjectReference Include="..\UrlShorteningService\UrlShorteningService.csproj">
       <Targets>Build;Package</Targets>
       <AdditionalProperties>PackageLocation=..\UrlShorteningService.Deployment\$(ProjectReferencesOutputPath)\UrlShorteningService\package.zip</AdditionalProperties>
