@@ -39,12 +39,11 @@
         </div>
                 <div class="row">
                     <div class="col-md-3" style="margin-top:10px;">
-                        <a id="txtShorturl"></a>
+                        <a id="txtShorturl" href="" target="_blank"></a>
 
                     </div>
-                    <div class="col-md-6">
-                        <a id="lnkCopy" onclick="clipBoard()" style="cursor:pointer">Copy</a>
-
+                    <div class="col-md-6" style="margin-top:10px;margin-left:10px;">
+                      <span id="lnkCopy" style="display:block;">To copy right click on link and copy link address</span>
                     </div>
 
                 </div>
@@ -64,6 +63,7 @@
 
         $('#btnSubmit').click(function (e) {
             var url = $('#txtLongurl').val();
+            if (url.indexOf(' ') != -1) { alert('Provided url contains spaces.'); return; }
             shorten(url);
         });
 
@@ -98,11 +98,7 @@
         }
 
 
-        function ClipBoard() {
-            var target = document.getElementById('txtShortUrl');
-            Copied = target.createTextRange();
-            Copied.execCommand("Copy");
-        }
+
        
     </script>
 

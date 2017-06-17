@@ -13,14 +13,8 @@ Param(
     [string] $ArtifactStagingDirectory = '.',
     [string] $DSCSourceFolder = 'DSC',
     [switch] $ValidateOnly,
-	[string] $DbServer = "hussainusama.database.windows.net",  
-	[string] $Database = "UrlShorteningServiceDatabase",
 	[string] $SqlPackageExePath = 'C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\Extensions\Microsoft\SQLDB\DAC\130\sqlpackage.exe'
 	)
-
-	$DBPublishProfilePath = $PSScriptRoot + '\UrlShorteningService.Database\UrlShorteningService.Database.publish.xml'
-	$DBdacpacPath = $PSScriptRoot + '\UrlShorteningService.Database\UrlShorteningService.Database.dacpac'
-
 	
 try {
     [Microsoft.Azure.Common.Authentication.AzureSession]::ClientFactory.AddUserAgent("VSAzureTools-$UI$($host.name)".replace('','_'), '2.9.6')
@@ -39,21 +33,23 @@ $OptionalParameters = New-Object -TypeName Hashtable
 $TemplateFile = [System.IO.Path]::GetFullPath([System.IO.Path]::Combine($PSScriptRoot, $TemplateFile))
 $TemplateParametersFile = [System.IO.Path]::GetFullPath([System.IO.Path]::Combine($PSScriptRoot, $TemplateParametersFile))
 
+#Parse the parameters file
+$JsonParameters = Get-Content $TemplateParametersFile -Raw | ConvertFrom-Json
+if (($JsonParameters | Get-Member -Type NoteProperty 'parameters') -ne $null) {
+        $JsonParameters = $JsonParameters.parameters
+    }
+
 if ($UploadArtifacts) {
     # Convert relative paths to absolute paths if needed
     $ArtifactStagingDirectory = [System.IO.Path]::GetFullPath([System.IO.Path]::Combine($PSScriptRoot, $ArtifactStagingDirectory))
 	Write-Output '', $ArtifactStagingDirectory
     $DSCSourceFolder = [System.IO.Path]::GetFullPath([System.IO.Path]::Combine($PSScriptRoot, $DSCSourceFolder))
 
-    # Parse the parameter file and update the values of artifacts location and artifacts location SAS token if they are present
-    $JsonParameters = Get-Content $TemplateParametersFile -Raw | ConvertFrom-Json
-    if (($JsonParameters | Get-Member -Type NoteProperty 'parameters') -ne $null) {
-        $JsonParameters = $JsonParameters.parameters
-    }
+    #Update the values of artifacts location and artifacts location SAS token if they are present
+    
     $ArtifactsLocationName = '_artifactsLocation'
     $ArtifactsLocationSasTokenName = '_artifactsLocationSasToken'
-    $OptionalParameters[$ArtifactsLocationName] = $JsonParameters | Select -Expand $ArtifactsLocationName -ErrorAction Ignore | 
-Select -Expand 'value' -ErrorAction Ignore
+    $OptionalParameters[$ArtifactsLocationName] = $JsonParameters | Select -Expand $ArtifactsLocationName -ErrorAction Ignore | Select -Expand 'value' -ErrorAction Ignore
     $OptionalParameters[$ArtifactsLocationSasTokenName] = $JsonParameters | Select -Expand $ArtifactsLocationSasTokenName -ErrorAction Ignore | Select -Expand 'value' -ErrorAction Ignore
 
     # Create DSC configuration archive
@@ -130,6 +126,13 @@ else {
 	
 		# Deploy database
 	
+		$DbServerName = $JsonParameters | Select -Expand 'serverName' -ErrorAction Ignore | Select -Expand 'value' -ErrorAction Ignore
+		$DbServer = $DbServerName + '.database.windows.net'
+		$Database = $JsonParameters | Select -Expand 'databaseName' -ErrorAction Ignore | Select -Expand 'value' -ErrorAction Ignore
+		
+		$DBPublishProfilePath = $PSScriptRoot + '\UrlShorteningService.Database\UrlShorteningService.Database.publish.xml'
+		$DBdacpacPath = $PSScriptRoot + '\UrlShorteningService.Database\UrlShorteningService.Database.dacpac'
+
 		if(Test-Path $SqlPackageExePath) {
 			& $SqlPackageExePath /Action:Publish /tsn:$DbServer /tdn:$Database /sf:$DBdacpacPath /pr:$DBPublishProfilePath
 		}
