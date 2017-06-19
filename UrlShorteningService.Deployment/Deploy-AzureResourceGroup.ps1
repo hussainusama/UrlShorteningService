@@ -13,7 +13,7 @@ Param(
     [string] $ArtifactStagingDirectory = '.',
     [string] $DSCSourceFolder = 'DSC',
     [switch] $ValidateOnly,
-	[string] $SqlPackageExePath = 'C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\Extensions\Microsoft\SQLDB\DAC\130\sqlpackage.exe'
+	[string] $SqlPackageExePath = 'C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Extensions\Microsoft\SQLDB\DAC\130\sqlpackage.exe'
 	)
 
 	if(-Not (Test-Path $SqlPackageExePath)) {
@@ -143,7 +143,7 @@ else {
 			& $SqlPackageExePath /Action:Publish /tsn:$DbServer /tdn:$Database /sf:$DBdacpacPath /pr:$DBPublishProfilePath
 		}
 		else {
-			Write-Output '', 'Database deployment requires a valid sqlpackage.exe path. Couldn't deploy database.'
+			Write-Output '', 'Database deployment requires a valid sqlpackage.exe path. Could not deploy database.'
 		}
 	}
 }
