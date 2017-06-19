@@ -5,11 +5,11 @@ Url shortening service to shorten the url. Easy deployment supporting azure.
 ### Projects
 
 #### UrlShorteningService
-Web application project containing the UI, Web api controller to handle shortening requests, HttpHandler for retreival requests 
+Web application project containing the UI, Web api controller to handle shortening requests, HttpHandler for retrieval requests 
 and Base62Encoder for encoding URLs. Easily deployable through Visual Studio.
 
 #### UrlShorteningService.Database
-Database project containg the schema for the database. Easily deployable through Visual Studio.
+Database project containing the schema for the database. Easily deployable through Visual Studio.
 
 #### UrlShorteningService.Tests
 Unit test project
