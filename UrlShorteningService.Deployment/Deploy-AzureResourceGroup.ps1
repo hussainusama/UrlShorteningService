@@ -15,6 +15,12 @@ Param(
     [switch] $ValidateOnly,
 	[string] $SqlPackageExePath = 'C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\Extensions\Microsoft\SQLDB\DAC\130\sqlpackage.exe'
 	)
+
+	if(-Not (Test-Path $SqlPackageExePath)) {
+		Write-Output '', 'Database deployment requires a valid sqlpackage.exe path. Application deployment failed.'
+		exit
+	}
+		
 	
 try {
     [Microsoft.Azure.Common.Authentication.AzureSession]::ClientFactory.AddUserAgent("VSAzureTools-$UI$($host.name)".replace('','_'), '2.9.6')
@@ -137,7 +143,7 @@ else {
 			& $SqlPackageExePath /Action:Publish /tsn:$DbServer /tdn:$Database /sf:$DBdacpacPath /pr:$DBPublishProfilePath
 		}
 		else {
-			Write-Output '', 'Database deployment requires a valid sqlpackage.exe path.'
+			Write-Output '', 'Database deployment requires a valid sqlpackage.exe path. Couldn't deploy database.'
 		}
 	}
 }
