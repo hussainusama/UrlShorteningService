@@ -2,7 +2,7 @@
 using Microsoft.Practices.Unity;
 using System.Web.Http;
 using UrlShorteningService.Models;
-using UrlShorteningService.Processors;
+using UrlShorteningService.UrlProcessors;
 
 namespace UrlShorteningService
 {
@@ -23,7 +23,6 @@ namespace UrlShorteningService
         private IUnityContainer ConfigureUnityContainer()
         {
             UnityContainer container = new UnityContainer();
-            //container.RegisterType<IFoo, Foo>(new ContainerControlledLifetimeManager());
             container.RegisterType<IBase62Encoder, Base62Encoder>();
             container.RegisterType<IUrlMapRepository, UrlMapRepository>();
             container.RegisterType<IUrlProcessor, Base62UrlProcessor>();

@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Text;
-using System.Web;
 
-namespace UrlShorteningService.Processors
+namespace UrlShorteningService.UrlProcessors
 {
     public class Base62Encoder : IBase62Encoder
     {

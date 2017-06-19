@@ -4,7 +4,7 @@ using System.IO;
 using System.Text;
 using System.Web;
 using UrlShorteningService.HttpHandlers;
-using UrlShorteningService.Processors;
+using UrlShorteningService.UrlProcessors;
 
 namespace UrlShorteningService.Tests
 {
@@ -14,17 +14,21 @@ namespace UrlShorteningService.Tests
         [TestMethod]
         public void Invoke_ProcessRequest_ShouldRedirect()
         {
-            FakeUrlMapRepository repo = new FakeUrlMapRepository(1234566);
+            var repo = new FakeUrlMapRepository(1234566);
             repo.InsertAsync("http://www.google.com");
 
-            StringBuilder output = new StringBuilder();
-            using (StringWriter sw = new StringWriter(output))
+            var output = new StringBuilder();
+            using (var sw = new StringWriter(output))
             {
-                HttpResponse response = new HttpResponse(sw);
-                HttpRequest request = new HttpRequest("", "http://urlshorteningservice.com/NAB5", "");
-                request.Browser = new HttpBrowserCapabilities();
-                request.Browser.Capabilities = new Dictionary<string, string> { { "requiresPostRedirectionHandling", "false" } };
-                HttpContext context = new HttpContext(request, response);
+                var response = new HttpResponse(sw);
+                var request = new HttpRequest("", "http://urlshorteningservice.com/NAB5", "")
+                {
+                    Browser = new HttpBrowserCapabilities
+                    {
+                        Capabilities = new Dictionary<string, string> {{"requiresPostRedirectionHandling", "false"}}
+                    }
+                };
+                var context = new HttpContext(request, response);
                 var handler = new ShortUrlHttpHandler(new Base62UrlProcessor(repo, new FakeBase62Encoder()));
                 handler.ProcessRequestAsync(context).ConfigureAwait(false);
             }

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace UrlShorteningService.Processors
+﻿namespace UrlShorteningService.UrlProcessors
 {
     public interface IBase62Encoder
     {

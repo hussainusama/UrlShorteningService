@@ -51,7 +51,7 @@ namespace UrlShorteningService.Models
                     commSelect.CommandText = "Select";
                     commSelect.CommandType = System.Data.CommandType.StoredProcedure;
 
-                    SqlParameter paramId = new SqlParameter()
+                    var paramId = new SqlParameter()
                     {
                         Direction = System.Data.ParameterDirection.Input,
                         SqlDbType = System.Data.SqlDbType.Int,
