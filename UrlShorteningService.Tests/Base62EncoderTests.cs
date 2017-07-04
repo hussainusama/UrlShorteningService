@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using UrlShorteningService.Processors;
+using UrlShorteningService.UrlProcessors;
 
 namespace UrlShorteningService.Tests
 {
@@ -16,7 +16,7 @@ namespace UrlShorteningService.Tests
         {
             var num = 178549087;
 
-            Base62Encoder encoder  = new Base62Encoder();
+            var encoder  = new Base62Encoder();
             var encodedString = encoder.Encode(num);
 
             Assert.AreEqual(num, encoder.Decode(encodedString));
@@ -27,7 +27,7 @@ namespace UrlShorteningService.Tests
         {
             var num = 0;
 
-            Base62Encoder encoder = new Base62Encoder();
+            var encoder = new Base62Encoder();
             var encodedString = encoder.Encode(num);
 
             Assert.IsTrue(encodedString.Length == 0);
@@ -38,7 +38,7 @@ namespace UrlShorteningService.Tests
         {
             var num = 1;
 
-            Base62Encoder encoder = new Base62Encoder();
+            var encoder = new Base62Encoder();
             var encodedString = encoder.Encode(num);
 
             Assert.IsTrue(encodedString.Length == 1);
@@ -49,7 +49,7 @@ namespace UrlShorteningService.Tests
         {
             var num = 2147483647;
 
-            Base62Encoder encoder = new Base62Encoder();
+            var encoder = new Base62Encoder();
             var encodedString = encoder.Encode(num);
 
             Assert.IsTrue(encodedString.Length == 6);
@@ -61,7 +61,7 @@ namespace UrlShorteningService.Tests
         {
             var num = 214563278;
 
-            Base62Encoder encoder = new Base62Encoder();
+            var encoder = new Base62Encoder();
             var encodedString = encoder.Encode(num);
 
             Assert.AreEqual(encodedString, encoder.Encode(num));
@@ -72,7 +72,7 @@ namespace UrlShorteningService.Tests
         {
             var shortString = "E7W";
 
-            Base62Encoder encoder = new Base62Encoder();
+            var encoder = new Base62Encoder();
             var num = encoder.Decode(shortString);
 
             Assert.AreEqual(num, encoder.Decode(shortString));

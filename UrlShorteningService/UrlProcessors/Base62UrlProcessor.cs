@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Threading.Tasks;
 using UrlShorteningService.Models;
-using System.Threading.Tasks;
 
-namespace UrlShorteningService.Processors
+namespace UrlShorteningService.UrlProcessors
 {
     public class Base62UrlProcessor : IUrlProcessor
     {

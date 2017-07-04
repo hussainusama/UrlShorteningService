@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using UrlShorteningService.Processors;
+using UrlShorteningService.UrlProcessors;
 
 namespace UrlShorteningService.Tests
 {
@@ -11,7 +11,7 @@ namespace UrlShorteningService.Tests
         {
             var urlLong = "https://docs.microsoft.com/en-us/aspnet/mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application";
 
-            Base62UrlProcessor processor = new Base62UrlProcessor(new FakeUrlMapRepository(1233), new Base62Encoder());
+            var processor = new Base62UrlProcessor(new FakeUrlMapRepository(1233), new Base62Encoder());
             var urlDeflated = await processor.DeflateAsync(urlLong).ConfigureAwait(false);
             var urlInflated = await processor.InflateAsync(urlDeflated).ConfigureAwait(false);
 
@@ -23,7 +23,7 @@ namespace UrlShorteningService.Tests
         {
             var urlLong = "https://docs.microsoft.com/en-us/aspnet/mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application";
 
-            Base62UrlProcessor processor = new Base62UrlProcessor(new FakeUrlMapRepository(0), new Base62Encoder());
+            var processor = new Base62UrlProcessor(new FakeUrlMapRepository(0), new Base62Encoder());
             var urlDeflated = await processor.DeflateAsync(urlLong).ConfigureAwait(false);
 
             Assert.IsTrue(urlDeflated.Length == 1);
@@ -34,7 +34,7 @@ namespace UrlShorteningService.Tests
         {
             var urlLong = "https://docs.microsoft.com/en-us/aspnet/mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application";
 
-            Base62UrlProcessor processor = new Base62UrlProcessor(new FakeUrlMapRepository(2147483646), new Base62Encoder());
+            var processor = new Base62UrlProcessor(new FakeUrlMapRepository(2147483646), new Base62Encoder());
             var urlDeflated = await processor.DeflateAsync(urlLong).ConfigureAwait(false);
 
             Assert.IsTrue(urlDeflated.Length == 6);

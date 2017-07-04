@@ -3,24 +3,24 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Web.Http;
-using UrlShorteningService.Processors;
 using System.Threading.Tasks;
+using UrlShorteningService.UrlProcessors;
 
 namespace UrlShorteningService.Controllers
 {
     [RoutePrefix("api/url")]
     public class UrlController : ApiController
     {
-        IUrlProcessor _processor;
+        readonly IUrlProcessor _processor;
 
-        UrlController() : this(ServiceLocator.Current.GetInstance<IUrlProcessor>())
+        public UrlController() : this(ServiceLocator.Current.GetInstance<IUrlProcessor>())
         {
 
         }
 
-        UrlController(IUrlProcessor processor)
+        private UrlController(IUrlProcessor processor)
         {
-            this._processor = processor;
+            _processor = processor;
         }
 
         [HttpGet]
