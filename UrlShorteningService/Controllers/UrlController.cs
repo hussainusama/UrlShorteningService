@@ -25,7 +25,7 @@ namespace UrlShorteningService.Controllers
 
         [HttpGet]
         [ActionName("shorten")]
-        public async Task<HttpResponseMessage> ShortenAsync(string longUrl)
+        public async Task<HttpResponseMessage> DeflateAsync(string longUrl)
         {
             var shortUrl = await _processor.DeflateAsync(longUrl);
             var result = string.Concat(Url.Content("~/"), shortUrl);
@@ -33,6 +33,19 @@ namespace UrlShorteningService.Controllers
             var resp = new HttpResponseMessage(HttpStatusCode.OK)
             {
                 Content = new StringContent(result, Encoding.UTF8, "text/plain")
+            };
+            return resp;
+
+        }
+
+        [HttpGet]
+        [ActionName("lengthen")]
+        public async Task<HttpResponseMessage> InflateAsync(string shortUrl)
+        {
+            var longUrl = await _processor.InflateAsync(shortUrl);
+            var resp = new HttpResponseMessage(HttpStatusCode.OK)
+            {
+                Content = new StringContent(longUrl, Encoding.UTF8, "text/plain")
             };
             return resp;
 
