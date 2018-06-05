@@ -25,7 +25,7 @@ namespace UrlShorteningService.HttpHandlers
             var regex = new Regex("^[a-zA-Z0-9]{1,6}$");
             if(regex.IsMatch(path))
             {
-               await _urlRedirectionService.InflateAndRedirectAsync(context, path);
+               await _urlRedirectionService.RetreiveAndRedirectAsync(context, path);
             }
         }
     }

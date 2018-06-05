@@ -6,7 +6,7 @@ using System.Web;
 
 namespace UrlShorteningService.UrlProcessors
 {
-    public class UrlRedirectionService: IUrlRedirectionService
+    public class UrlRedirectionService : IUrlRedirectionService
     {
         private readonly IUrlRetriever _urlRetreiver;
 
@@ -14,7 +14,8 @@ namespace UrlShorteningService.UrlProcessors
         {
             _urlRetreiver = urlRetreiver;
         }
-        public async Task InflateAndRedirectAsync(HttpContext context, string shortUrl)
+
+        public async Task RetreiveAndRedirectAsync(HttpContext context, string shortUrl)
         {
             context.Response.Redirect(await _urlRetreiver.RetreiveUrlAsync(shortUrl).ConfigureAwait(false));
         }

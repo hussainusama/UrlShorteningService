@@ -8,6 +8,6 @@ namespace UrlShorteningService.UrlProcessors
 {
     public interface IUrlRedirectionService
     {
-        Task InflateAndRedirectAsync(HttpContext context, string shortUrl);
+        Task RetreiveAndRedirectAsync(HttpContext context, string shortUrl);
     }
 }
