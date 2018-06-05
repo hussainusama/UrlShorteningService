@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using AutoFixture.Xunit2;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using UrlShorteningService.Models;
 using UrlShorteningService.Tests.Infrastructure;
