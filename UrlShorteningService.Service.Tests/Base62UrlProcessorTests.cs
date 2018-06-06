@@ -13,7 +13,7 @@ namespace UrlShorteningService.Tests
     public class Base62UrlProcessorTests
     {
         [Theory, DefaultAutoData]
-        public void DeflateAsync_LongUrlStoredInRepo_ReturnsShortUrl(
+        public void DeflateAsync_ShortenUrl_ReturnsShortUrl(
             [Frozen] IUrlMapRepository urlMapRepository,
             [Frozen] IBase62Encoder base62Encoder,
             string longUrl,
@@ -30,7 +30,7 @@ namespace UrlShorteningService.Tests
         }
 
         [Theory, DefaultAutoData]
-        public void InflateAsync_LongUrlStoredInRepo_ReturnsLongUrl(
+        public void InflateAsync_LengthenUrl_ReturnsLongUrl(
             [Frozen] IUrlMapRepository urlMapRepository,
             [Frozen] IBase62Encoder base62Encoder,
             string longUrl,
