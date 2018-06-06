@@ -39,11 +39,6 @@
       <IncludeFilePath>..\UrlShorteningService.Database\bin\$(Configuration)\*.*</IncludeFilePath>
       <Private>false</Private>
     </ProjectReference>
-    <ProjectReference Include="..\UrlShorteningService\UrlShorteningService.csproj">
-      <Targets>Build;Package</Targets>
-      <AdditionalProperties>PackageLocation=..\UrlShorteningService.Deployment\$(ProjectReferencesOutputPath)\UrlShorteningService\package.zip</AdditionalProperties>
-      <IncludeFilePath>$(ProjectReferencesOutputPath)\UrlShorteningService\package.zip</IncludeFilePath>
-    </ProjectReference>
   </ItemGroup>
   <Target Name="GetReferenceAssemblyPaths" />
 </Project>

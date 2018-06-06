@@ -13,7 +13,7 @@ namespace UrlShorteningService.Controllers
     {
         readonly IUrlProcessor _processor;
 
-        public UrlController() : this(ServiceLocator.Current.GetInstance<IUrlProcessor>())
+        public UrlController() : this(processor: ServiceLocator.Current.GetInstance<IUrlProcessor>())
         {
 
         }
