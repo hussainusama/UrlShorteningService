@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using UrlShorteningService.UI.UrlRetreivers;
 
-namespace UrlShorteningService.UrlProcessors
+namespace UrlShorteningService.UI.UrlRedirectionServices
 {
     public class UrlRedirectionService : IUrlRedirectionService
     {

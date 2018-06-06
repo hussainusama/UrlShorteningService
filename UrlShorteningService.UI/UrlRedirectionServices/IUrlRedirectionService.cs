@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace UrlShorteningService.UrlProcessors
+namespace UrlShorteningService.UI.UrlRedirectionServices
 {
     public interface IUrlRedirectionService
     {

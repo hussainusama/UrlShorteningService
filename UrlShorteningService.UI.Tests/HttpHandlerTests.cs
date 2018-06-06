@@ -1,10 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
-using System.Web;
-using UrlShorteningService.HttpHandlers;
-using UrlShorteningService.UrlProcessors;
 
 namespace UrlShorteningService.Tests
 {

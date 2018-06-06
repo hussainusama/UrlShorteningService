@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
-using UrlShorteningService.UrlProcessors;
+using UrlShorteningService.UI.UrlRedirectionServices;
 using CommonServiceLocator;
 
 namespace UrlShorteningService.HttpHandlers

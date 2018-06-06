@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace UrlShorteningService.UrlProcessors
+namespace UrlShorteningService.UI.UrlRetreivers
 {
     internal interface IUrlRetriever
     {
