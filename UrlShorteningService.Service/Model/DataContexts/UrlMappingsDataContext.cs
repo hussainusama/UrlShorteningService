@@ -1,19 +1,21 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
+using UrlShorteningService.Service.Model.Repositories;
+using UrlShorteningService.Service.Model.Types;
 
-namespace UrlShorteningService.Service.Model
+namespace UrlShorteningService.Service.Model.DataContexts
 {
-    public class UrlShorteningServiceDataContext : IUrlShorteningServiceDataContext
+    public class UrlMappingsDataContext : IUrlMappingsDataContext
     {
         private readonly UrlShorteningServiceModel _model;
-        private readonly DbSetWrapper<IUrlMapping, UrlMapping> _mappings;
+        private readonly DbSetRepository<IUrlMapping, UrlMapping> _mappings;
 
         public IEntityRepository<IUrlMapping> UrlMappings => _mappings;
 
-        public UrlShorteningServiceDataContext()
+        public UrlMappingsDataContext()
         {
             _model = new UrlShorteningServiceModel();
-            _mappings = new DbSetWrapper<IUrlMapping, UrlMapping>(_model.UrlMappings);
+            _mappings = new DbSetRepository<IUrlMapping, UrlMapping>(_model.UrlMappings);
         }
 
         public Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken))

@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace UrlShorteningService.Service.Model
+namespace UrlShorteningService.Service.Model.Types
 {
     [Table("UrlMapping")]
     public class UrlMapping : IUrlMapping

@@ -1,4 +1,4 @@
-namespace UrlShorteningService.Service.Model
+namespace UrlShorteningService.Service.Model.Types
 {
     public interface IUrlMapping
     {

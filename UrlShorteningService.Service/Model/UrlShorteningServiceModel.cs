@@ -1,4 +1,5 @@
 using System.Data.Entity;
+using UrlShorteningService.Service.Model.Types;
 
 namespace UrlShorteningService.Service.Model
 {
@@ -10,9 +11,5 @@ namespace UrlShorteningService.Service.Model
         }
 
         public virtual DbSet<UrlMapping> UrlMappings { get; set; }
-
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-        }
     }
 }

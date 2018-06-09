@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace UrlShorteningService.Service.Model
+namespace UrlShorteningService.Service.Model.Repositories
 {
     public interface IEntityRepository<T> : IQueryable<T> where T : class
     {

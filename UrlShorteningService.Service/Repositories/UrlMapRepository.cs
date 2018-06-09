@@ -42,7 +42,7 @@ namespace UrlShorteningService.Service.Repositories
             }
         }
 
-        async Task<string> IUrlMapRepository.GetByIdAsync(int id)
+        public async Task<string> GetByIdAsync(int id)
         {
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["azuresqldb"].ConnectionString))
             {
@@ -68,5 +68,7 @@ namespace UrlShorteningService.Service.Repositories
                 }
             }
         }
+
+       
     }
 }

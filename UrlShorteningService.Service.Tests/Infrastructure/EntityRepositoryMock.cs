@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using NSubstitute;
-using UrlShorteningService.Service.Model;
+using UrlShorteningService.Service.Model.Repositories;
 
 namespace UrlShorteningService.Service.Tests.Infrastructure
 {
