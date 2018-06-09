@@ -21,7 +21,7 @@ namespace UrlShorteningService.Tests
             string shortString,
             Base62UrlProcessor sut)
         {
-            urlMapRepository.InsertAsync(longUrl).Returns(identity);
+            urlMapRepository.AddAsync(longUrl).Returns(identity);
             base62Encoder.Encode(identity).Returns(shortString);
 
             var result = Task.Run(async () => await sut.DeflateAsync(longUrl)).GetAwaiter().GetResult();

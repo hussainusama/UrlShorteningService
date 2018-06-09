@@ -17,7 +17,7 @@ namespace UrlShorteningService.Service.UrlProcessors
 
         public async Task<string> DeflateAsync(string longUrl)
         {
-            var id = await _urlMapRepository.InsertAsync(longUrl);
+            var id = await _urlMapRepository.AddAsync(longUrl);
             return _base62Encoder.Encode(id);
         }
 

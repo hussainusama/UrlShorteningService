@@ -7,7 +7,7 @@ namespace UrlShorteningService.Service.Repositories
 {
     public class UrlMapRepository : IUrlMapRepository
     {
-        public async Task<int> InsertAsync(string longUrl)
+        public async Task<int> AddAsync(string longUrl)
         {
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["azuresqldb"].ConnectionString))
             {
