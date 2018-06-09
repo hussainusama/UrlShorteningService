@@ -90,6 +90,7 @@
     <Compile Include="Infrastructure\DefaultCustomization.cs" />
     <Compile Include="Infrastructure\DefaultInlineAutoDataAttribute.cs" />
     <Compile Include="Infrastructure\DefaultMemberAutoDataAttribute.cs" />
+    <Compile Include="Infrastructure\EntityRepositoryMock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

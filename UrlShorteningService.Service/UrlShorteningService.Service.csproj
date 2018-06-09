@@ -124,6 +124,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Model\DbSetWrapper.cs" />
+    <Compile Include="Model\IEntityRepository.cs" />
+    <Compile Include="Model\IUrlMapping.cs" />
+    <Compile Include="Model\IUrlShorteningServiceDataContext.cs" />
+    <Compile Include="Model\UrlShorteningServiceDataContext.cs" />
     <Compile Include="Repositories\IUrlMapRepository.cs" />
     <Compile Include="Repositories\UrlMapRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

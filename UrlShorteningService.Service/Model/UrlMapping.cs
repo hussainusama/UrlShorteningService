@@ -1,13 +1,10 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace UrlShorteningService.Service.Model
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
-
     [Table("UrlMapping")]
-    public partial class UrlMapping
+    public class UrlMapping : IUrlMapping
     {
         [Key]
         public int Id { get; set; }
