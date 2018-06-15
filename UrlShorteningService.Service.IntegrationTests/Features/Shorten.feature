@@ -5,6 +5,9 @@
 
 
 Scenario: Shorten the Url
-		Given Database contains the UrlMapping record with the seed Id set to integer generated randomly
-		When I call shorten endpoint with the Url
-		Then the result should be base64 encoded string of the next Id after the seed Id
+		Given Database contains the following UrlMapping record for the Url
+		| Id      | Url                   |
+		| 1234567 | http://www.google.com |
+		When I call endpoint api/url/shorten with http://www.yahoo.com
+		#"5BAO" is base64 encoded string of "1234568"
+		Then The result should be 5BAO

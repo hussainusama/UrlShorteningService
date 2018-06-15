@@ -17,17 +17,17 @@ namespace UrlShorteningService.Service.IntegrationTests.Features
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.3.2.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public partial class LengthenFeature : Xunit.IClassFixture<LengthenFeature.FixtureData>, System.IDisposable
+    public partial class ShortenFeature : Xunit.IClassFixture<ShortenFeature.FixtureData>, System.IDisposable
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
         private Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
         
-#line 1 "Lengthen.feature"
+#line 1 "Shorten.feature"
 #line hidden
         
-        public LengthenFeature(LengthenFeature.FixtureData fixtureData, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
+        public ShortenFeature(ShortenFeature.FixtureData fixtureData, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
         {
             this._testOutputHelper = testOutputHelper;
             this.TestInitialize();
@@ -36,8 +36,8 @@ namespace UrlShorteningService.Service.IntegrationTests.Features
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Lengthen", "\t\tIn order to test the integration\r\n\t\tAs a developer \r\n\t\tI want to ensure that le" +
-                    "ngthen endpoint works correctly", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Shorten", "\t\tIn order to test the integration\r\n\t\tAs a developer \r\n\t\tI want to ensure that sh" +
+                    "orten endpoint works correctly", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -72,12 +72,12 @@ namespace UrlShorteningService.Service.IntegrationTests.Features
             this.ScenarioTearDown();
         }
         
-        [Xunit.FactAttribute(DisplayName="Lengthen the Url")]
-        [Xunit.TraitAttribute("FeatureTitle", "Lengthen")]
-        [Xunit.TraitAttribute("Description", "Lengthen the Url")]
-        public virtual void LengthenTheUrl()
+        [Xunit.FactAttribute(DisplayName="Shorten the Url")]
+        [Xunit.TraitAttribute("FeatureTitle", "Shorten")]
+        [Xunit.TraitAttribute("Description", "Shorten the Url")]
+        public virtual void ShortenTheUrl()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Lengthen the Url", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Shorten the Url", ((string[])(null)));
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -89,10 +89,10 @@ this.ScenarioSetup(scenarioInfo);
                         "http://www.google.com"});
 #line 8
   testRunner.Given("Database contains the following UrlMapping record for the Url", ((string)(null)), table1, "Given ");
-#line 12
-  testRunner.When("I call endpoint api/url/lengthen with 5BAN", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 11
+  testRunner.When("I call endpoint api/url/shorten with http://www.yahoo.com", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 13
-  testRunner.Then("The result should be http://www.google.com", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+  testRunner.Then("The result should be 5BAO", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -104,12 +104,12 @@ this.ScenarioSetup(scenarioInfo);
             
             public FixtureData()
             {
-                LengthenFeature.FeatureSetup();
+                ShortenFeature.FeatureSetup();
             }
             
             void System.IDisposable.Dispose()
             {
-                LengthenFeature.FeatureTearDown();
+                ShortenFeature.FeatureTearDown();
             }
         }
     }

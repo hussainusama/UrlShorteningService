@@ -8,6 +8,7 @@ namespace UrlShorteningService.Tests
     public class Base62EncoderTests
     {
         [Theory]
+        [DefaultInlineAutoData(1234568, "5BAO")]
         [DefaultInlineAutoData(1234567, "5BAN")]
         [DefaultInlineAutoData(123456, "W7E")]
         [DefaultInlineAutoData(12345, "3D7")]
@@ -24,6 +25,7 @@ namespace UrlShorteningService.Tests
         }
 
         [Theory]
+        [DefaultInlineAutoData("5BAO", 1234568)]
         [DefaultInlineAutoData("5BAN", 1234567)]
         [DefaultInlineAutoData("W7E", 123456)]
         [DefaultInlineAutoData("3D7", 12345)]
