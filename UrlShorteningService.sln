@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UrlShorteningService.UI.Tes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UrlShorteningService.Service.IntegrationTests", "UrlShorteningService.Service.IntegrationTests\UrlShorteningService.Service.IntegrationTests.csproj", "{05932E83-32FC-4DFB-93D5-BFFEDA5BE1E1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UrlShorteningService.Model", "UrlShorteningService.Model\UrlShorteningService.Model.csproj", "{0B09E9E8-8C60-4E59-A63A-BEA55B7A1027}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{05932E83-32FC-4DFB-93D5-BFFEDA5BE1E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{05932E83-32FC-4DFB-93D5-BFFEDA5BE1E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{05932E83-32FC-4DFB-93D5-BFFEDA5BE1E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B09E9E8-8C60-4E59-A63A-BEA55B7A1027}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B09E9E8-8C60-4E59-A63A-BEA55B7A1027}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B09E9E8-8C60-4E59-A63A-BEA55B7A1027}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B09E9E8-8C60-4E59-A63A-BEA55B7A1027}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

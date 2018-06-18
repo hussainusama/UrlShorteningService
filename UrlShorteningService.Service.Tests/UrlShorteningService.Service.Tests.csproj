@@ -98,6 +98,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\UrlShorteningService.Model\UrlShorteningService.Model.csproj">
+      <Project>{0B09E9E8-8C60-4E59-A63A-BEA55B7A1027}</Project>
+      <Name>UrlShorteningService.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UrlShorteningService.Service\UrlShorteningService.Service.csproj">
       <Project>{020F4711-15ED-413D-BA64-3198DCA69A2A}</Project>
       <Name>UrlShorteningService.Service</Name>

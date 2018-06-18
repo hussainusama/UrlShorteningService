@@ -1,32 +1,39 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
+using System.Xml.Schema;
 using NSubstitute;
-using UrlShorteningService.Service.Model.Repositories;
+using UrlShorteningService.Model.Repositories;
 
 namespace UrlShorteningService.Service.Tests.Infrastructure
 {
-    public class EntityRepositoryMock<T> : List<T>, IEntityRepository<T>
-        where T : class
+    public class EntityRepositoryMock<T, TKey> : IEntityRepository<T, TKey> where T : class, new()
     {
-        private readonly Func<T> _factory;
-
-        public EntityRepositoryMock(Func<T> factory)
-        {
-            _factory = factory;
-        }
+        private readonly List<T> _entities;
 
         public EntityRepositoryMock()
-            : this(() => Substitute.For<T>())
         {
+            _entities = new List<T>();
         }
 
-        private IQueryable<T> Queryable => ToArray().AsQueryable();
+        private IQueryable<T> Queryable => _entities.AsQueryable();
 
-        bool IEntityRepository<T>.Remove(T entity)
+        public void Add(T entity)
         {
-            return Remove(entity);
+            _entities.Add(entity);
+        }
+
+        public bool Remove(T entity)
+        {
+            return _entities.Remove(entity);
+        }
+
+        public Task<T> GetByKeyAsync(TKey key)
+        {
+            throw new NotImplementedException();
         }
 
         public Type ElementType => Queryable.ElementType;
@@ -38,7 +45,17 @@ namespace UrlShorteningService.Service.Tests.Infrastructure
 
         public T Create()
         {
-            return _factory();
+            return new T();
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            return _entities.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
     }
 }

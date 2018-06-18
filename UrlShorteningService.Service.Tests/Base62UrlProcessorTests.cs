@@ -2,8 +2,9 @@
 using AutoFixture.Xunit2;
 using FluentAssertions;
 using NSubstitute;
+using UrlShorteningService.Model.DataContexts;
+using UrlShorteningService.Model.Types;
 using UrlShorteningService.Service.Encoders;
-using UrlShorteningService.Service.Repositories;
 using UrlShorteningService.Service.Tests.Infrastructure;
 using UrlShorteningService.Service.UrlProcessors;
 using Xunit;
@@ -14,36 +15,34 @@ namespace UrlShorteningService.Service.Tests
     {
         [Theory, DefaultAutoData]
         public void DeflateAsync_ShortenUrl_ReturnsShortUrl(
-            [Frozen] IUrlMapRepository urlMapRepository,
+            [Frozen] IUrlMappingsDataContext urlMapRepository,
             [Frozen] IBase62Encoder base62Encoder,
-            string longUrl,
-            int identity,
+            UrlMapping mapping,
             string shortString,
             Base62UrlProcessor sut)
         {
-            urlMapRepository.AddAsync(longUrl).Returns(identity);
-            base62Encoder.Encode(identity).Returns(shortString);
+            urlMapRepository.UrlMappings.Create().Returns(mapping);
+            base62Encoder.Encode(mapping.Id).Returns(shortString);
 
-            var result = Task.Run(async () => await sut.DeflateAsync(longUrl)).GetAwaiter().GetResult();
+            var result = Task.Run(async () => await sut.DeflateAsync(mapping.Url)).GetAwaiter().GetResult();
 
             result.Should().Be(shortString);
         }
 
         [Theory, DefaultAutoData]
         public void InflateAsync_LengthenUrl_ReturnsLongUrl(
-            [Frozen] IUrlMapRepository urlMapRepository,
+            [Frozen] IUrlMappingsDataContext urlMapRepository,
             [Frozen] IBase62Encoder base62Encoder,
-            string longUrl,
-            int identity,
+            UrlMapping mapping,
             string shortString,
             Base62UrlProcessor sut)
         {
-            base62Encoder.Decode(shortString).Returns(identity);
-            urlMapRepository.GetByIdAsync(identity).Returns(longUrl);
+            base62Encoder.Decode(shortString).Returns(mapping.Id);
+            urlMapRepository.UrlMappings.GetByKeyAsync(mapping.Id).Returns(mapping);
 
             var result = Task.Run(async () => await sut.InflateAsync(shortString)).GetAwaiter().GetResult();
 
-            result.Should().Be(longUrl);
+            result.Should().Be(mapping.Url);
         }
     }
 }
