@@ -7,9 +7,8 @@ using TechTalk.SpecFlow;
 namespace UrlShorteningService.Service.IntegrationTests.Steps
 {
     [Binding]
-    [Scope(Feature = "Lengthen")]
-    [Scope(Feature = "Shorten")]
-    public sealed class CommonSteps
+    [Scope(Feature = "Integration")]
+    public sealed class IntegrationSteps
     {
         [BeforeScenario(Order = 0)]
         public void CleanDatabase()

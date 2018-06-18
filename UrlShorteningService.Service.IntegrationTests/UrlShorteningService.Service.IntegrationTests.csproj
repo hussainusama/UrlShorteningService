@@ -61,28 +61,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Features\Lengthen.feature.cs">
+    <Compile Include="Features\Integration.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Lengthen.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Features\Shorten.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Shorten.feature</DependentUpon>
+      <DependentUpon>Integration.feature</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Steps\CommonSteps.cs" />
+    <Compile Include="Steps\IntegrationSteps.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Features\Lengthen.feature">
+    <None Include="Features\Integration.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>Lengthen.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Features\Shorten.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>Shorten.feature.cs</LastGenOutput>
+      <LastGenOutput>Integration.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>

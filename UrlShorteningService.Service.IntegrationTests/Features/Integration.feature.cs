@@ -17,17 +17,17 @@ namespace UrlShorteningService.Service.IntegrationTests.Features
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.3.2.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public partial class LengthenFeature : Xunit.IClassFixture<LengthenFeature.FixtureData>, System.IDisposable
+    public partial class IntegrationFeature : Xunit.IClassFixture<IntegrationFeature.FixtureData>, System.IDisposable
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
         private Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
         
-#line 1 "Lengthen.feature"
+#line 1 "Integration.feature"
 #line hidden
         
-        public LengthenFeature(LengthenFeature.FixtureData fixtureData, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
+        public IntegrationFeature(IntegrationFeature.FixtureData fixtureData, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
         {
             this._testOutputHelper = testOutputHelper;
             this.TestInitialize();
@@ -36,8 +36,8 @@ namespace UrlShorteningService.Service.IntegrationTests.Features
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Lengthen", "\t\tIn order to test the integration\r\n\t\tAs a developer \r\n\t\tI want to ensure that le" +
-                    "ngthen endpoint works correctly", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Integration", "\t\tIn order to test the integration\r\n\t\tAs a developer \r\n\t\tI want to ensure that en" +
+                    "dpoints of the service work correctly", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -73,12 +73,12 @@ namespace UrlShorteningService.Service.IntegrationTests.Features
         }
         
         [Xunit.FactAttribute(DisplayName="Lengthen the Url")]
-        [Xunit.TraitAttribute("FeatureTitle", "Lengthen")]
+        [Xunit.TraitAttribute("FeatureTitle", "Integration")]
         [Xunit.TraitAttribute("Description", "Lengthen the Url")]
         public virtual void LengthenTheUrl()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Lengthen the Url", ((string[])(null)));
-#line 7
+#line 6
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
@@ -87,12 +87,37 @@ this.ScenarioSetup(scenarioInfo);
             table1.AddRow(new string[] {
                         "1234567",
                         "http://www.google.com"});
-#line 8
+#line 7
   testRunner.Given("Database contains the following UrlMapping record for the Url", ((string)(null)), table1, "Given ");
-#line 12
+#line 11
   testRunner.When("I call endpoint api/url/lengthen with 5BAN", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 13
+#line 12
   testRunner.Then("The result should be http://www.google.com", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.FactAttribute(DisplayName="Shorten the Url")]
+        [Xunit.TraitAttribute("FeatureTitle", "Integration")]
+        [Xunit.TraitAttribute("Description", "Shorten the Url")]
+        public virtual void ShortenTheUrl()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Shorten the Url", ((string[])(null)));
+#line 14
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Url"});
+            table2.AddRow(new string[] {
+                        "1234567",
+                        "http://www.google.com"});
+#line 15
+  testRunner.Given("Database contains the following UrlMapping record for the Url", ((string)(null)), table2, "Given ");
+#line 18
+  testRunner.When("I call endpoint api/url/shorten with http://www.yahoo.com", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 20
+  testRunner.Then("The result should be 5BAO", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -104,12 +129,12 @@ this.ScenarioSetup(scenarioInfo);
             
             public FixtureData()
             {
-                LengthenFeature.FeatureSetup();
+                IntegrationFeature.FeatureSetup();
             }
             
             void System.IDisposable.Dispose()
             {
-                LengthenFeature.FeatureTearDown();
+                IntegrationFeature.FeatureTearDown();
             }
         }
     }
