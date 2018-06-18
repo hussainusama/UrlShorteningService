@@ -1,9 +1,9 @@
 ﻿using FluentAssertions;
-using UrlShorteningService.Service.Tests.Infrastructure;
 using UrlShorteningService.Service.Encoders;
+using UrlShorteningService.Service.Tests.Infrastructure;
 using Xunit;
 
-namespace UrlShorteningService.Tests
+namespace UrlShorteningService.Service.Tests
 {
     public class Base62EncoderTests
     {

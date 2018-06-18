@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace UrlShorteningService.Tests
+namespace UrlShorteningService.UI.Tests
 {
     [TestClass]
     public class HttpHandlerTests

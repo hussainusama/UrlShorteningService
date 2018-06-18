@@ -1,14 +1,14 @@
 ﻿using System.Threading.Tasks;
 using AutoFixture.Xunit2;
+using FluentAssertions;
 using NSubstitute;
+using UrlShorteningService.Service.Encoders;
 using UrlShorteningService.Service.Repositories;
 using UrlShorteningService.Service.Tests.Infrastructure;
 using UrlShorteningService.Service.UrlProcessors;
-using UrlShorteningService.Service.Encoders;
 using Xunit;
-using FluentAssertions;
 
-namespace UrlShorteningService.Tests
+namespace UrlShorteningService.Service.Tests
 {
     public class Base62UrlProcessorTests
     {
