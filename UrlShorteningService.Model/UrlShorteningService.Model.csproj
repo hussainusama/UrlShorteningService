@@ -52,7 +52,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\DbSetRepository.cs" />
     <Compile Include="Repositories\IEntityRepository.cs" />
-    <Compile Include="Types\IUrlMapping.cs" />
     <Compile Include="Types\UrlMapping.cs" />
     <Compile Include="UrlShorteningServiceModel.cs" />
   </ItemGroup>

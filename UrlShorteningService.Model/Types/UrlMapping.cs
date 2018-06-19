@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace UrlShorteningService.Model.Types
 {
     [Table("UrlMapping")]
-    public class UrlMapping : IUrlMapping
+    public class UrlMapping
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
