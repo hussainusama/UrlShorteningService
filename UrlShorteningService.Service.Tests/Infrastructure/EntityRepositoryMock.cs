@@ -10,7 +10,7 @@ using UrlShorteningService.Model.Repositories;
 
 namespace UrlShorteningService.Service.Tests.Infrastructure
 {
-    public class EntityRepositoryMock<T, TKey> : IEntityRepository<T, TKey> where T : class, new()
+    public class EntityRepositoryMock<T, TKey> : IRepository<T, TKey> where T : class, new()
     {
         private readonly List<T> _entities;
 
@@ -18,8 +18,6 @@ namespace UrlShorteningService.Service.Tests.Infrastructure
         {
             _entities = new List<T>();
         }
-
-        private IQueryable<T> Queryable => _entities.AsQueryable();
 
         public void Add(T entity)
         {
@@ -36,26 +34,9 @@ namespace UrlShorteningService.Service.Tests.Infrastructure
             throw new NotImplementedException();
         }
 
-        public Type ElementType => Queryable.ElementType;
-
-        public Expression Expression => Queryable.Expression;
-
-        public IQueryProvider Provider => Queryable.Provider;
-
-
         public T Create()
         {
             return new T();
-        }
-
-        public IEnumerator<T> GetEnumerator()
-        {
-            return _entities.GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
         }
     }
 }

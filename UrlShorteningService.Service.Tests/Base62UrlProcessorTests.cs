@@ -2,8 +2,9 @@
 using AutoFixture.Xunit2;
 using FluentAssertions;
 using NSubstitute;
-using UrlShorteningService.Model.DataContexts;
+using UrlShorteningService.Model.Factories;
 using UrlShorteningService.Model.Types;
+using UrlShorteningService.Model.UnitsOfWork;
 using UrlShorteningService.Service.Encoders;
 using UrlShorteningService.Service.Tests.Infrastructure;
 using UrlShorteningService.Service.UrlProcessors;
@@ -15,13 +16,15 @@ namespace UrlShorteningService.Service.Tests
     {
         [Theory, DefaultAutoData]
         public void DeflateAsync_ShortenUrl_ReturnsShortUrl(
-            [Frozen] IUrlMappingsDataContext urlMapRepository,
+            [Frozen] IUnitOfWorkFactory unitOfWorkFactory,
+            [Frozen] IUnitOfWork unitOfWork,
             [Frozen] IBase62Encoder base62Encoder,
             UrlMapping mapping,
             string shortString,
             Base62UrlProcessor sut)
         {
-            urlMapRepository.UrlMappings.Create().Returns(mapping);
+            unitOfWorkFactory.Create().Returns(unitOfWork);
+            unitOfWork.UrlMappingsRepository.Create().Returns(mapping);
             base62Encoder.Encode(mapping.Id).Returns(shortString);
 
             var result = Task.Run(async () => await sut.DeflateAsync(mapping.Url)).GetAwaiter().GetResult();
@@ -31,14 +34,16 @@ namespace UrlShorteningService.Service.Tests
 
         [Theory, DefaultAutoData]
         public void InflateAsync_LengthenUrl_ReturnsLongUrl(
-            [Frozen] IUrlMappingsDataContext urlMapRepository,
+            [Frozen] IUnitOfWorkFactory unitOfWorkFactory,
+            [Frozen] IUnitOfWork unitOfWork,
             [Frozen] IBase62Encoder base62Encoder,
             UrlMapping mapping,
             string shortString,
             Base62UrlProcessor sut)
         {
+            unitOfWorkFactory.Create().Returns(unitOfWork);
             base62Encoder.Decode(shortString).Returns(mapping.Id);
-            urlMapRepository.UrlMappings.GetByKeyAsync(mapping.Id).Returns(mapping);
+            unitOfWork.UrlMappingsRepository.GetByKeyAsync(mapping.Id).Returns(mapping);
 
             var result = Task.Run(async () => await sut.InflateAsync(shortString)).GetAwaiter().GetResult();
 

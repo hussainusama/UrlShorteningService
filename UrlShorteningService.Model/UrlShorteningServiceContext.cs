@@ -3,9 +3,9 @@ using UrlShorteningService.Model.Types;
 
 namespace UrlShorteningService.Model
 {
-    public class UrlShorteningServiceModel : DbContext
+    public class UrlShorteningServiceContext : DbContext
     {
-        public UrlShorteningServiceModel()
+        public UrlShorteningServiceContext()
             : base("name=UrlShorteningServiceModelConnectionString")
         {
         }

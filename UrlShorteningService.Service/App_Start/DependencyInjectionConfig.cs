@@ -1,6 +1,6 @@
 ﻿using System.Web.Http;
 using Unity;
-using UrlShorteningService.Model.DataContexts;
+using UrlShorteningService.Model.Factories;
 using UrlShorteningService.Service.Encoders;
 using UrlShorteningService.Service.UrlProcessors;
 using UrlShorteningService.Service.DependencyResolvers;
@@ -13,7 +13,7 @@ namespace UrlShorteningService.Service
         {
             UnityContainer container = new UnityContainer();
             container.RegisterType<IBase62Encoder, Base62Encoder>();
-            container.RegisterType<IUrlMappingsDataContext, UrlMappingsDataContext>();
+            container.RegisterType<IUnitOfWorkFactory, UnitOfWorkFactory>();
             container.RegisterType<IUrlProcessor, Base62UrlProcessor>();
 
             config.DependencyResolver = new UnityResolver(container);

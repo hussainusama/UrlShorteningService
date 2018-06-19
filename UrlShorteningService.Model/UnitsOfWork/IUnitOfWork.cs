@@ -4,11 +4,11 @@ using System.Threading.Tasks;
 using UrlShorteningService.Model.Repositories;
 using UrlShorteningService.Model.Types;
 
-namespace UrlShorteningService.Model.DataContexts
+namespace UrlShorteningService.Model.UnitsOfWork
 {
-    public interface IUrlMappingsDataContext : IDisposable
+    public interface IUnitOfWork : IDisposable
     {
-        IEntityRepository<UrlMapping, int> UrlMappings { get; }
+        IRepository<UrlMapping, int> UrlMappingsRepository { get; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken));
     }
