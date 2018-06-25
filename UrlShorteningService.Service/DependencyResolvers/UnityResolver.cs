@@ -10,18 +10,18 @@ namespace UrlShorteningService.Service.DependencyResolvers
 {
     public class UnityResolver : IDependencyResolver
     {
-        protected IUnityContainer container;
+        protected IUnityContainer Container;
 
         public UnityResolver(IUnityContainer container)
         {
-            this.container = container ?? throw new ArgumentNullException("container");
+            Container = container ?? throw new ArgumentNullException(nameof(container));
         }
 
         public object GetService(Type serviceType)
         {
             try
             {
-                return container.Resolve(serviceType);
+                return Container.Resolve(serviceType);
             }
             catch (ResolutionFailedException)
             {
@@ -33,7 +33,7 @@ namespace UrlShorteningService.Service.DependencyResolvers
         {
             try
             {
-                return container.ResolveAll(serviceType);
+                return Container.ResolveAll(serviceType);
             }
             catch (ResolutionFailedException)
             {
@@ -43,7 +43,7 @@ namespace UrlShorteningService.Service.DependencyResolvers
 
         public IDependencyScope BeginScope()
         {
-            var child = container.CreateChildContainer();
+            var child = Container.CreateChildContainer();
             return new UnityResolver(child);
         }
 
@@ -54,7 +54,7 @@ namespace UrlShorteningService.Service.DependencyResolvers
 
         protected virtual void Dispose(bool disposing)
         {
-            container.Dispose();
+            Container.Dispose();
         }
     }
 }
