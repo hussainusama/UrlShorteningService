@@ -133,7 +133,6 @@
     <Compile Include="UrlProcessors\IUrlProcessor.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="connections.config" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
