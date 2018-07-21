@@ -9,7 +9,11 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "UrlShorteningService.Databa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UrlShorteningService.Service", "UrlShorteningService.Service\UrlShorteningService.Service.csproj", "{020F4711-15ED-413D-BA64-3198DCA69A2A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UrlShorteningService.Service.Tests", "UrlShorteningService.Service.Tests\UrlShorteningService.Service.Tests.csproj", "{FE7DFFE4-A561-463D-A940-9B7336D183FB}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UrlShorteningService.UI", "UrlShorteningService.UI\UrlShorteningService.UI.csproj", "{5FE0955A-7000-40DB-B87E-3734CEB9D309}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UrlShorteningService.UI.Tests", "UrlShorteningService.UI.Tests\UrlShorteningService.UI.Tests.csproj", "{12CEF0BF-6C27-410E-AABA-0899E794F5B7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UrlShorteningService.Service.IntegrationTests", "UrlShorteningService.Service.IntegrationTests\UrlShorteningService.Service.IntegrationTests.csproj", "{05932E83-32FC-4DFB-93D5-BFFEDA5BE1E1}"
 EndProject
@@ -17,9 +21,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UrlShorteningService.Model"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UrlShorteningService.Service.FunctionalTests", "UrlShorteningService.Service.FunctionalTests\UrlShorteningService.Service.FunctionalTests.csproj", "{E3F1F3ED-6354-40BE-98D0-81DED1085160}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UrlShorteningService.UI.UnitTests", "UrlShorteningService.UI.UnitTests\UrlShorteningService.UI.UnitTests.csproj", "{C2FFAE02-C647-456B-B504-F859596774D6}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UrlShorteningService.Service.UnitTests", "UrlShorteningService.Service.UnitTests\UrlShorteningService.Service.UnitTests.csproj", "{52EEC793-18F2-4B61-A3E0-5ED5F7DFC310}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UrlShorteningService.UI.UnitTests", "UrlShorteningService.UI.UnitTests\UrlShorteningService.UI.UnitTests.csproj", "{C2FFAE02-C647-456B-B504-F859596774D6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +43,18 @@ Global
 		{020F4711-15ED-413D-BA64-3198DCA69A2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{020F4711-15ED-413D-BA64-3198DCA69A2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{020F4711-15ED-413D-BA64-3198DCA69A2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE7DFFE4-A561-463D-A940-9B7336D183FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE7DFFE4-A561-463D-A940-9B7336D183FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE7DFFE4-A561-463D-A940-9B7336D183FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE7DFFE4-A561-463D-A940-9B7336D183FB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5FE0955A-7000-40DB-B87E-3734CEB9D309}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5FE0955A-7000-40DB-B87E-3734CEB9D309}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5FE0955A-7000-40DB-B87E-3734CEB9D309}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5FE0955A-7000-40DB-B87E-3734CEB9D309}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12CEF0BF-6C27-410E-AABA-0899E794F5B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12CEF0BF-6C27-410E-AABA-0899E794F5B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12CEF0BF-6C27-410E-AABA-0899E794F5B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12CEF0BF-6C27-410E-AABA-0899E794F5B7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{05932E83-32FC-4DFB-93D5-BFFEDA5BE1E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{05932E83-32FC-4DFB-93D5-BFFEDA5BE1E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{05932E83-32FC-4DFB-93D5-BFFEDA5BE1E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -61,10 +71,6 @@ Global
 		{C2FFAE02-C647-456B-B504-F859596774D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C2FFAE02-C647-456B-B504-F859596774D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C2FFAE02-C647-456B-B504-F859596774D6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{52EEC793-18F2-4B61-A3E0-5ED5F7DFC310}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{52EEC793-18F2-4B61-A3E0-5ED5F7DFC310}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{52EEC793-18F2-4B61-A3E0-5ED5F7DFC310}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{52EEC793-18F2-4B61-A3E0-5ED5F7DFC310}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
