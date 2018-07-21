@@ -19,8 +19,8 @@ namespace UrlShorteningService.Service.Tests
             [Frozen] IUnitOfWorkFactory unitOfWorkFactory,
             [Frozen] IUnitOfWork unitOfWork,
             [Frozen] IBase62Encoder base62Encoder,
-            UrlMapping mapping,
-            string shortString,
+            [Frozen] UrlMapping mapping,
+            [Frozen] string shortString,
             Base62UrlProcessor sut)
         {
             unitOfWorkFactory.Create().Returns(unitOfWork);
@@ -37,8 +37,8 @@ namespace UrlShorteningService.Service.Tests
             [Frozen] IUnitOfWorkFactory unitOfWorkFactory,
             [Frozen] IUnitOfWork unitOfWork,
             [Frozen] IBase62Encoder base62Encoder,
-            UrlMapping mapping,
-            string shortString,
+            [Frozen] UrlMapping mapping,
+            [Frozen] string shortString,
             Base62UrlProcessor sut)
         {
             unitOfWorkFactory.Create().Returns(unitOfWork);
