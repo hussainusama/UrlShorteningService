@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 using UrlShorteningService.UI.UrlRedirectionServices;
 using CommonServiceLocator;
 
-namespace UrlShorteningService.HttpHandlers
+namespace UrlShorteningService.UI.HttpHandlers
 {
     public class ShortUrlHttpHandler : HttpTaskAsyncHandler
     {
