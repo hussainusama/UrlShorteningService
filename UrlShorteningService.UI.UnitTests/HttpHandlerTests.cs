@@ -1,5 +1,4 @@
-﻿using UrlShorteningService.UI.HttpHandlers;
-using UrlShorteningService.UI.UnitTests.Infrastructure;
+﻿using UrlShorteningService.UI.UnitTests.Infrastructure;
 using Xunit;
 
 namespace UrlShorteningService.UI.Tests
@@ -7,8 +6,7 @@ namespace UrlShorteningService.UI.Tests
     public class HttpHandlerTests
     {
         [Theory, DefaultAutoData]
-        public void Invoke_ProcessRequest_ShouldRedirect(
-            ShortUrlHttpHandler sut)
+        public void Invoke_ProcessRequest_ShouldRedirect()
         {
             //var repo = new FakeUrlMapRepository(1234566);
             //repo.InsertAsync("http://www.google.com");
