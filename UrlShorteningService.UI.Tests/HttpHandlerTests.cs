@@ -1,11 +1,11 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using UrlShorteningService.UI.Tests.Infrastructure;
+using Xunit;
 
 namespace UrlShorteningService.UI.Tests
 {
-    [TestClass]
     public class HttpHandlerTests
     {
-        [TestMethod]
+        [Theory, DefaultAutoData]
         public void Invoke_ProcessRequest_ShouldRedirect()
         {
             //var repo = new FakeUrlMapRepository(1234566);
