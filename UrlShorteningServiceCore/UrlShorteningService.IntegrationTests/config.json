@@ -1,0 +1,8 @@
+{
+  "ConnectionStrings": {
+    "DbConnectionString": ""
+  },
+  "WebService": {
+    "UrlShorteningServiceHost": "http://as-urlshortening.azurewebsites.net/"
+  }
+}
